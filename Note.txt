@@ -1,0 +1,33 @@
+- npm install: tạo lại thư mục node_modules
+- npm start: khởi chạy project
+- npm install jquery popper.js bootstrap@4.5.2 --save
+
+
+- Baitap2Component
+    - HeaderComponent
+    - CarouselComponent
+    - WWD
+    - Contact
+    - ListCardComponent
+        - Card
+    - FooterComponent
+
+- Baitap3Component
+    - Header
+    - Carousel
+    - ListSmartphone
+        - Phone
+        - Phone
+        - Phone
+        - Phone
+
+===== Buổi 1 ======
+* Component:
+    - Stateful Component => class
+    - Stateless Component => function
+
+===== Buổi 2 ======
+* Rendering Elements: {}
+* Handling Events:  onclick
+* State: nếu như state thay đổi => component sẽ render lại
+* List keys: duyệt mảng
