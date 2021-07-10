@@ -10,7 +10,7 @@ export default class ExampleList extends Component {
     }
 
     render() {
-        console.log(this.state.listMovie);
+        // console.log(this.state.listMovie);
         return (
             <div>
                 <h3>ExampleList</h3>
