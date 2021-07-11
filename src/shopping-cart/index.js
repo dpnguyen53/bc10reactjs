@@ -20,22 +20,83 @@ export default class ShoppingCart extends Component {
         });
     };
 
-    handleAddProductCart = (product) => {
-        const productCart = {
-            maSP: product.maSP,
-            tenSP: product.tenSP,
-            hinhAnh: product.hinhAnh,
-            soLuong: 1,
-            dongGia: product.giaBan,
-        };
+    _findIndex = (maSP) => {
+        return this.state.listCart.findIndex((item) => {
+            return item.maSP === maSP;
+        });
+    };
 
-        //copy this.state.listCart => mảng mới listCart
-        let listCart = this.state.listCart;
-        listCart.push(productCart);
+    handleAddProductCart = (product) => {
+        let listCart = [...this.state.listCart];
+        const index = this._findIndex(product.maSP);
+
+        if (index !== -1) {
+            //Tìm thấy SP => Update số lượng
+            listCart[index].soLuong += 1;
+        } else {
+            //Thêm SP vào mảng giỏ hàng
+            const productCart = {
+                maSP: product.maSP,
+                tenSP: product.tenSP,
+                hinhAnh: product.hinhAnh,
+                soLuong: 1,
+                dongGia: product.giaBan,
+            };
+
+            //copy this.state.listCart => mảng mới listCart
+            listCart = [...this.state.listCart, productCart];
+        }
 
         this.setState({
             listCart: listCart,
         });
+    };
+
+    handleDelete = (product) => {
+        console.log(product);
+        let listCart = [...this.state.listCart];
+        const index = this._findIndex(product.maSP);
+
+        if (index !== -1) {
+            //Tim thay => Xoa
+            listCart.splice(index, 1);
+            this.setState({
+                listCart,
+            });
+        }
+    };
+
+    handleUpdateSL = (product, status) => {
+        let listCart = [...this.state.listCart];
+        const index = this._findIndex(product.maSP);
+
+        if (index !== -1) {
+            if (status) {
+                //Tăng SL
+                listCart[index].soLuong += 1;
+            } else {
+                //Giảm SL
+                if (listCart[index].soLuong > 1) {
+                    listCart[index].soLuong -= 1;
+                }
+            }
+            //Update state
+            this.setState({
+                listCart,
+            });
+        }
+    };
+
+    total = () => {
+        // let sum = 0;
+        // this.state.listCart.forEach((item) => {
+        //     sum += item.soLuong;
+        // });
+        // return sum;
+
+        return this.state.listCart.reduce((sum, item) => {
+            return (sum += item.soLuong);
+        }, 0);
     };
 
     render() {
@@ -49,7 +110,7 @@ export default class ShoppingCart extends Component {
                         data-toggle="modal"
                         data-target="#modelId"
                     >
-                        Giỏ hàng (0)
+                        Giỏ hàng ({this.total()})
                     </button>
                 </div>
                 <DanhSachSanPham
@@ -57,7 +118,11 @@ export default class ShoppingCart extends Component {
                     getDetailProduct={this.handleGetProduct}
                     getProductAddCart={this.handleAddProductCart}
                 />
-                <Modal listCart={listCart} />
+                <Modal
+                    listCart={listCart}
+                    getProdutDelete={this.handleDelete}
+                    getProductUpdate={this.handleUpdateSL}
+                />
                 <div className="container">
                     <div className="row">
                         <div className="col-sm-5">

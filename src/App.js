@@ -8,6 +8,7 @@ import ExampleCar from "./example-car";
 import ListKeys from "./list-keys";
 import Communication from "./communication";
 import ShoppingCart from "./shopping-cart";
+import Home from "./usermanagement";
 
 function App() {
     return (
@@ -27,6 +28,8 @@ function App() {
             <Communication />
             <hr />
             <ShoppingCart />
+            <hr />
+            <Home />
 
             <br />
             <br />
