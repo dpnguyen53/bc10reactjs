@@ -47,3 +47,8 @@
 ===== Buổi 4 ======
 * Shopping cart
 * Usermanagement
+
+===== Buổi 5 ======
+* Form
+* Lifecycle: componentWillReceiveProps
+* Redux

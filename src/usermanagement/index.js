@@ -11,6 +11,7 @@ class Home extends Component {
         this.state = {
             userList: data,
             keyword: "",
+            userEdit: null,
         };
     }
 
@@ -38,8 +39,37 @@ class Home extends Component {
         });
     };
 
+    /**
+     * Add && Update
+     */
+    handleSubmit = (user) => {
+        let userList = [...this.state.userList];
+
+        if (user.id) {
+            //Update
+            const index = this._findIndex(user.id);
+            if (index !== -1) {
+                userList[index] = user;
+            }
+        } else {
+            //Add
+            const userClone = { ...user, id: new Date().getTime() };
+            userList = [...this.state.userList, userClone];
+        }
+
+        this.setState({
+            userList,
+        });
+    };
+
+    hanldeGetUserEdit = (user) => {
+        this.setState({
+            userEdit: user,
+        });
+    };
+
     render() {
-        let { userList, keyword } = this.state;
+        let { userList, keyword, userEdit } = this.state;
         //Filter userList trước khi truyền vào Component Users
         userList = this.state.userList.filter((user) => {
             return (
@@ -57,6 +87,11 @@ class Home extends Component {
                         className="btn btn-success"
                         data-toggle="modal"
                         data-target="#modelIdUser"
+                        onClick={() => {
+                            this.setState({
+                                userEdit: null,
+                            });
+                        }}
                     >
                         Add User
                     </button>
@@ -64,8 +99,9 @@ class Home extends Component {
                 <Users
                     userList={userList}
                     getUserDelete={this.handleDeleteUser}
+                    getUserEdit={this.hanldeGetUserEdit}
                 />
-                <Modal />
+                <Modal onSubmit={this.handleSubmit} userEdit={userEdit} />
             </div>
         );
     }
