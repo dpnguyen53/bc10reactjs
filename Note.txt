@@ -51,4 +51,8 @@
 ===== Buổi 5 ======
 * Form
 * Lifecycle: componentWillReceiveProps
+
+===== Buổi 6 ======
 * Redux
+    Cài đặt redux: npm install redux --save
+    Cài đặt react-redux: npm install react-redux --save
