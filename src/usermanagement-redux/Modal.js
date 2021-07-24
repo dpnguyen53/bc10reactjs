@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { actSubmit } from "./../redux/actions";
 
 class Modal extends Component {
     constructor(props) {
@@ -162,11 +163,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onSubmit: (user) => {
-            const action = {
-                type: "SUBMIT",
-                payload: user,
-            };
-            dispatch(action);
+            dispatch(actSubmit(user));
         },
     };
 };

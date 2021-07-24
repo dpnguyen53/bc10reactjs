@@ -1,3 +1,5 @@
+import { DELETE, EDIT, SUBMIT, KEYWORD } from "./../constants";
+
 let initialState = {
     userList: [
         {
@@ -22,9 +24,8 @@ let initialState = {
 };
 
 const userReducer = (state = initialState, action) => {
-    console.log(action);
     switch (action.type) {
-        case "DELETE": {
+        case DELETE: {
             let userList = [...state.userList];
             //Tìm vị trí
             const index = userList.findIndex(
@@ -39,17 +40,17 @@ const userReducer = (state = initialState, action) => {
             return { ...state };
         }
 
-        case "GET_KEYWORD": {
+        case KEYWORD: {
             state.keyword = action.payload;
             return { ...state };
         }
 
-        case "EDIT": {
+        case EDIT: {
             state.userEdit = action.payload;
             return { ...state };
         }
 
-        case "SUBMIT": {
+        case SUBMIT: {
             let userList = [...state.userList];
 
             if (action.payload.id) {

@@ -10,6 +10,7 @@ import Communication from "./communication";
 import ShoppingCart from "./shopping-cart";
 // import Home from "./usermanagement";
 import HomeRedux from "./usermanagement-redux";
+import FormValidation from "./form-validation";
 
 function App() {
     return (
@@ -32,6 +33,8 @@ function App() {
             <hr />
             {/* <Home /> */}
             <HomeRedux />
+            <hr />
+            <FormValidation />
 
             <br />
             <br />
