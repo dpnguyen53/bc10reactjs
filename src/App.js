@@ -11,6 +11,7 @@ import ShoppingCart from "./shopping-cart";
 // import Home from "./usermanagement";
 import HomeRedux from "./usermanagement-redux";
 import FormValidation from "./form-validation";
+import Lifecycle from "./lifecycle";
 
 function App() {
     return (
@@ -35,6 +36,8 @@ function App() {
             <HomeRedux />
             <hr />
             <FormValidation />
+            <hr />
+            <Lifecycle />
 
             <br />
             <br />
